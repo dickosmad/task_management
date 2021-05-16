@@ -2,14 +2,17 @@ import React from 'react';
 import Task from './Task'
 
 const TaskList = (props) => {
-  console.log(props.tasks)
   return (
     <div>
-    <Task/>
+      <div className='card-header text-uppercase text-center font-weight-bold' >{props.status} </div>
       {
-        props.tasks && props.tasks.map(task => {
-          <Task key={task.id} task ={task} />
-        })
+        props.tasks && props.tasks.map(task => (
+          <Task key={task.id}
+           task ={task} 
+           onStatusChange={props.onStatusChange}
+           onRemoveTask={props.onRemoveTask}
+            />
+        ))
       }
     </div>
   )

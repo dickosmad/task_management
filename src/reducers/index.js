@@ -1,20 +1,33 @@
-const initialState = [
-        {
-        id:'1',
-        title:'Learn React',
-        description:'Want to learn React',
-        status:'In Progress'
-      },
-      {
-        id:'2',
-        title:'Learn Javascript and  React',
-        description:'Want to learn JS and master  React',
-        status:'In Progress'
-      }
-  ]
+import { EDIT_TASK , CREATE_TASK , REMOVE_TASK  } from '../actions/types'
+
+const initialState = []
 
 const tasks = (state= {tasks:initialState}, action) =>{
-  return state
+  switch(action.type){
+    case EDIT_TASK :{
+      return {
+      tasks: state.tasks.map(task=>{
+        if(task.id === action.payload.id){
+          return Object.assign({},task , action.payload.params)
+        }
+          return task
+      })
+      }
+    }
+    case CREATE_TASK : {
+      return {
+        tasks : state.tasks.concat(action.payload)
+      }
+      
+    }
+    case REMOVE_TASK :{
+      return{
+        tasks: state.tasks.filter(task => task.id !== action.id)
+      }
+    }
+    default:
+     return state
+  }
 };
 
 export default tasks; 
