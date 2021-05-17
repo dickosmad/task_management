@@ -18,13 +18,13 @@ const onRemoveTask = (id)=>{
 }
 
   return (
-    <>
+    <div className='main'>
       <TaskPage tasks={props.tasks} 
       onStatusChange={onStatusChange}
        onCreateTask={onCreateTask}
        onRemoveTask={onRemoveTask}
         />
-    </>
+    </div>
   );
 }
 

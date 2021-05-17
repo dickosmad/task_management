@@ -7,6 +7,12 @@ const TaskPage = props => {
   const [cardForm, setCardForm] = React.useState(false);
   const [title, setTitle] = React.useState('');
   const [description, setDescription] = React.useState('');
+  const STYLES = { 
+    background: 'rgba(196, 196, 196, 0.1)',
+    borderRadius: '20px',
+    padding: '2rem'
+    
+    }
 
   const formToggler = () => {
     setCardForm(!cardForm);
@@ -37,7 +43,7 @@ const TaskPage = props => {
     return TASK_STATUSES.map((status, id) => {
       const taskStatus = tasks.filter(task => task.status === status);
       return (
-        <div key={id} className='col-md-3 card m-2 p-0' >
+        <div key={id} className='col-md-3 card m-2 p-0' style={STYLES}>
           <TaskList key={status} status={status} tasks={taskStatus} onStatusChange={props.onStatusChange} onRemoveTask={props.onRemoveTask} />
         </div>
       );
@@ -46,10 +52,10 @@ const TaskPage = props => {
 
   return (
     <div className="container my-5">
-      <div className="jumbotron p-3" style={{ background: '#e9ecef' }}>
+      <div className="jumbotron p-3" style={STYLES}>
         <div className="row">
           <div className="col-md-2">
-            <button className="btn btn-success m-3" onClick={formToggler}>
+            <button className="btn btn-danger m-3" onClick={formToggler}>
               +
 						</button>
           </div>
@@ -77,7 +83,7 @@ const TaskPage = props => {
                 placeholder="task title"
               />
             </div>
-            <button type="submit" className="btn btn-primary"  >
+            <button type="submit" className="btn btn-danger"  >
               Submit
 						</button>
           </form>
@@ -85,7 +91,7 @@ const TaskPage = props => {
       </div>
       <div
         className="row d-flex justify-content-center position-relative my-5 "
-        style={{ background: '#e9ecef' }}
+        style={STYLES}
       >
         {renderTaskList()}
       </div>
